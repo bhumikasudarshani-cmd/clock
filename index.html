@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f0e8">
+  <title>Local Time</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="clock-shell">
+    <header class="topbar">
+      <a class="wordmark" href="." aria-label="Local Time home">
+        <span class="wordmark-mark" aria-hidden="true"></span>
+        <span>LOCAL TIME</span>
+      </a>
+      <div class="live-status"><span class="status-dot" aria-hidden="true"></span>Live now</div>
+    </header>
+
+    <section class="clock-stage" aria-label="Current time">
+      <div class="location-line">
+        <span class="eyebrow">Your current timezone</span>
+        <span class="timezone" id="timezone">Detecting timezone...</span>
+      </div>
+      <div class="time-row">
+        <time class="time" id="time" datetime="">00:00</time>
+        <span class="period" id="period">AM</span>
+      </div>
+      <div class="date" id="date">Loading date...</div>
+      <div class="seconds-track" aria-hidden="true"><span id="seconds-progress"></span></div>
+    </section>
+
+    <section class="details-grid" aria-label="Clock controls and details">
+      <div class="detail-block">
+        <span class="label">Today</span>
+        <strong id="day-progress">Day 1 of 365</strong>
+      </div>
+      <div class="detail-block">
+        <span class="label">Week</span>
+        <strong id="week-number">Week 01</strong>
+      </div>
+      <div class="detail-block format-block">
+        <span class="label">Display</span>
+        <button class="format-toggle" id="format-toggle" type="button" aria-pressed="false">24 hour <span aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+
+    <footer class="footer-note">
+      <span>Time is local to this device</span>
+      <span class="footer-rule" aria-hidden="true"></span>
+      <span id="offset">UTC +00:00</span>
+    </footer>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>

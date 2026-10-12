@@ -1,0 +1,78 @@
+:root {
+  --paper: #f4f0e8;
+  --ink: #1d2521;
+  --muted: #6f766f;
+  --line: #d5d1c7;
+  --accent: #e8634f;
+  --accent-dark: #b74234;
+  --mono: "DM Mono", monospace;
+  --sans: "Manrope", sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--ink);
+  background-color: var(--paper);
+  background-image: radial-gradient(#d8d3c9 0.7px, transparent 0.7px);
+  background-size: 18px 18px;
+  font-family: var(--sans);
+}
+
+.clock-shell {
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 48px, 1120px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 31px 0 28px;
+}
+
+.topbar, .location-line, .footer-note { display: flex; align-items: center; }
+
+.topbar { justify-content: space-between; border-bottom: 1px solid var(--line); padding-bottom: 24px; }
+
+.wordmark { display: flex; align-items: center; gap: 10px; color: var(--ink); font-size: 12px; font-weight: 800; letter-spacing: .12em; text-decoration: none; }
+.wordmark-mark { width: 13px; height: 13px; border: 2px solid var(--accent); border-radius: 50%; position: relative; }
+.wordmark-mark::after { content: ""; position: absolute; width: 4px; height: 2px; background: var(--accent); top: 3px; left: 8px; transform: rotate(45deg); transform-origin: left center; }
+.live-status { color: var(--muted); font-family: var(--mono); font-size: 11px; letter-spacing: .04em; }
+.status-dot { display: inline-block; width: 7px; height: 7px; margin-right: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(232, 99, 79, .13); }
+
+.clock-stage { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 12vh 0 10vh; }
+.location-line { gap: 18px; margin-bottom: 22px; font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: .08em; }
+.eyebrow { color: var(--muted); }
+.timezone { color: var(--accent-dark); }
+.time-row { display: flex; align-items: flex-end; gap: clamp(12px, 2vw, 26px); }
+.time { font-size: clamp(5.5rem, 16vw, 13.8rem); font-weight: 500; line-height: .9; letter-spacing: -.09em; font-variant-numeric: tabular-nums; }
+.period { padding-bottom: clamp(8px, 1.7vw, 25px); color: var(--accent); font-family: var(--mono); font-size: clamp(1.2rem, 2.5vw, 2.1rem); font-weight: 500; letter-spacing: .04em; }
+.date { margin-top: 30px; color: var(--muted); font-size: clamp(1rem, 2vw, 1.4rem); font-weight: 500; }
+.seconds-track { width: min(100%, 680px); height: 3px; margin-top: 50px; overflow: hidden; background: var(--line); }
+.seconds-track span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .4s linear; }
+
+.details-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.detail-block { min-height: 108px; padding: 21px 24px 19px 0; border-right: 1px solid var(--line); }
+.detail-block + .detail-block { padding-left: 24px; }
+.detail-block:last-child { border: 0; }
+.label { display: block; margin-bottom: 12px; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.detail-block strong { font-size: 14px; font-weight: 700; }
+.format-toggle { padding: 0; border: 0; color: var(--accent-dark); background: transparent; font: inherit; font-size: 14px; font-weight: 700; cursor: pointer; }
+.format-toggle span { display: inline-block; margin-left: 7px; transition: transform .2s ease; }
+.format-toggle:hover span, .format-toggle:focus-visible span { transform: translate(2px, -2px); }
+.format-toggle:focus-visible { outline: 2px solid var(--accent); outline-offset: 5px; }
+.footer-note { gap: 14px; margin-top: 23px; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .02em; }
+.footer-rule { width: 28px; height: 1px; background: var(--line); }
+
+@media (max-width: 600px) {
+  .clock-shell { width: min(100% - 32px, 1120px); padding-top: 22px; }
+  .clock-stage { padding: 18vh 0 15vh; }
+  .location-line { align-items: flex-start; flex-direction: column; gap: 7px; margin-bottom: 24px; }
+  .time { font-size: clamp(4.4rem, 20vw, 7.5rem); }
+  .details-grid { grid-template-columns: 1fr 1fr; }
+  .detail-block { min-height: 95px; }
+  .format-block { grid-column: span 2; border-top: 1px solid var(--line); border-right: 0; }
+  .detail-block.format-block { padding-left: 0; }
+  .footer-note { flex-wrap: wrap; line-height: 1.7; }
+}
